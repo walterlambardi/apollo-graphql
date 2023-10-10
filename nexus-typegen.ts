@@ -33,6 +33,16 @@ export interface NexusGenObjects {
     user: NexusGenRootTypes['User']; // User!
   }
   Mutation: {};
+  Post: { // root type
+    author: string; // String!
+    createdAt: string; // String!
+    description: string; // String!
+    id: number; // Int!
+    image: string; // String!
+    likes: number; // Int!
+    title: string; // String!
+    updateAt: string; // String!
+  }
   Product: { // root type
     creatorId: number; // Int!
     id: number; // Int!
@@ -64,9 +74,21 @@ export interface NexusGenFieldTypes {
     user: NexusGenRootTypes['User']; // User!
   }
   Mutation: { // field return type
+    CreatePost: NexusGenRootTypes['Post']; // Post!
     CreateProduct: NexusGenRootTypes['Product']; // Product!
+    likePost: NexusGenRootTypes['Post']; // Post!
     login: NexusGenRootTypes['AuthType']; // AuthType!
     register: NexusGenRootTypes['AuthType']; // AuthType!
+  }
+  Post: { // field return type
+    author: string; // String!
+    createdAt: string; // String!
+    description: string; // String!
+    id: number; // Int!
+    image: string; // String!
+    likes: number; // Int!
+    title: string; // String!
+    updateAt: string; // String!
   }
   Product: { // field return type
     createdBy: NexusGenRootTypes['User'] | null; // User
@@ -76,6 +98,7 @@ export interface NexusGenFieldTypes {
     price: number; // Float!
   }
   Query: { // field return type
+    posts: NexusGenRootTypes['Post'][]; // [Post!]!
     products: NexusGenRootTypes['Product'][]; // [Product!]!
   }
   User: { // field return type
@@ -92,9 +115,21 @@ export interface NexusGenFieldTypeNames {
     user: 'User'
   }
   Mutation: { // field return type name
+    CreatePost: 'Post'
     CreateProduct: 'Product'
+    likePost: 'Post'
     login: 'AuthType'
     register: 'AuthType'
+  }
+  Post: { // field return type name
+    author: 'String'
+    createdAt: 'String'
+    description: 'String'
+    id: 'Int'
+    image: 'String'
+    likes: 'Int'
+    title: 'String'
+    updateAt: 'String'
   }
   Product: { // field return type name
     createdBy: 'User'
@@ -104,6 +139,7 @@ export interface NexusGenFieldTypeNames {
     price: 'Float'
   }
   Query: { // field return type name
+    posts: 'Post'
     products: 'Product'
   }
   User: { // field return type name
@@ -116,9 +152,18 @@ export interface NexusGenFieldTypeNames {
 
 export interface NexusGenArgTypes {
   Mutation: {
+    CreatePost: { // args
+      author: string; // String!
+      description: string; // String!
+      image: string; // String!
+      title: string; // String!
+    }
     CreateProduct: { // args
       name: string; // String!
       price: number; // Float!
+    }
+    likePost: { // args
+      id: number; // Int!
     }
     login: { // args
       password: string; // String!

@@ -8,9 +8,22 @@ type AuthType {
 }
 
 type Mutation {
+  CreatePost(author: String!, description: String!, image: String!, title: String!): Post!
   CreateProduct(name: String!, price: Float!): Product!
+  likePost(id: Int!): Post!
   login(password: String!, username: String!): AuthType!
   register(email: String!, password: String!, username: String!): AuthType!
+}
+
+type Post {
+  author: String!
+  createdAt: String!
+  description: String!
+  id: Int!
+  image: String!
+  likes: Int!
+  title: String!
+  updateAt: String!
 }
 
 type Product {
@@ -22,6 +35,7 @@ type Product {
 }
 
 type Query {
+  posts: [Post!]!
   products: [Product!]!
 }
 
