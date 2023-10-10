@@ -26,7 +26,7 @@ export const ProductsQuery = extendType({
       type: 'Product',
       async resolve (_parent, _args, context: Context, _info): Promise<Product[]> {
         const { conn } = context
-        return await conn.query('select * from products')
+        return await conn.query('select * from product')
       }
     })
   }
